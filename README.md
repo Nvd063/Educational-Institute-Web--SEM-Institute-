@@ -29,16 +29,16 @@ A modern, production-ready web application for Sirat-e-Mustaqeem Educational Sys
 
 The **Sirat-e-Mustaqeem Educational System** web application is a high-performance portal designed for parents, students, and administrators. It features:
 
-- 📝 **Dynamic Admission Forms** - Multi-step enrollment with validation
-- 👥 **Student Life Tracking** - Journey timelines and milestones
-- 📊 **Academic Results** - Searchable student result cards
-- 🖼️ **Interactive Gallery** - Masonry layout with lightbox
-- 🔍 **Global Search** - Keyboard-navigable spotlight search
-- ♿ **Full Accessibility** - WCAG 2.1 AA compliant
-- 📱 **Responsive Design** - Desktop, tablet, and mobile optimized
-- 🌙 **Dark Mode** - Automatic light/dark theme switching
-- ⚡ **Server-Side Rendering (SSR)** - Fast initial page loads
-- 🚀 **Production-Ready** - Optimized for cloud deployment (Cloudflare Pages)
+-  **Dynamic Admission Forms** - Multi-step enrollment with validation
+-  **Student Life Tracking** - Journey timelines and milestones
+-  **Academic Results** - Searchable student result cards
+-  **Interactive Gallery** - Masonry layout with lightbox
+-  **Global Search** - Keyboard-navigable spotlight search
+-  **Full Accessibility** - WCAG 2.1 AA compliant
+-  **Responsive Design** - Desktop, tablet, and mobile optimized
+-  **Dark Mode** - Automatic light/dark theme switching
+-  **Server-Side Rendering (SSR)** - Fast initial page loads
+-  **Production-Ready** - Optimized for cloud deployment (Cloudflare Pages)
 
 ---
 
@@ -164,7 +164,7 @@ sirat-learn-lead-main/
 
 ## Key Features
 
-### 🎨 User Interface
+### User Interface
 - ✅ **Scroll Progress Ring** - Circular indicator showing page scroll position with one-click scroll-to-top
 - ✅ **Hero Section** - Blurred background with parallax effect & floating animations
 - ✅ **Navigation Bar** - Responsive header with menu, search, and theme toggle
@@ -175,7 +175,7 @@ sirat-learn-lead-main/
 - ✅ **Loading States** - Smooth loading indicators & skeleton screens
 - ✅ **Toast Notifications** - Clean alerts for confirmations & errors
 
-### 🎓 Educational Features
+### Educational Features
 - ✅ **Admissions Portal** - 5-step form with validation & document checklist
 - ✅ **Academic Results** - Search results by Roll Number with visual cards
 - ✅ **Syllabus** - Detailed curriculum breakdown by class
@@ -184,7 +184,7 @@ sirat-learn-lead-main/
 - ✅ **Gallery** - Masonry image gallery with lightbox
 - ✅ **Policies** - Code of conduct, dress code, fees information
 
-### 🤖 AI Chatbot
+### AI Chatbot
 - ✅ **Ask Sirat AI** - Floating chatbot with multi-turn conversations
 - ✅ **Gemini Integration** - Using Gemini 3.6 Flash via Interactions API (v1)
 - ✅ **School Context** - Trained on school info (admissions, academics, policies)
@@ -193,7 +193,7 @@ sirat-learn-lead-main/
 - ✅ **Error Handling** - Clean error messages & retry logic
 - ✅ **Typing Indicators** - Shows when Gemini is responding
 
-### ♿ Accessibility
+### Accessibility
 - ✅ WCAG 2.1 AA Compliant
 - ✅ Full keyboard navigation
 - ✅ Screen reader support with ARIA labels
@@ -203,7 +203,7 @@ sirat-learn-lead-main/
 - ✅ Respects `prefers-reduced-motion`
 - ✅ Skip to content link
 
-### ⚡ Performance
+### Performance
 - ✅ Server-Side Rendering (SSR) for fast initial load
 - ✅ Code splitting & lazy loading
 - ✅ Image optimization
@@ -341,10 +341,10 @@ export const askSiratAI = createServerFn({ method: "POST" })
 ```
 
 **Why server functions?**
-- 🔒 Keep API keys secret (not in browser)
-- ⚡ Run expensive operations server-side
-- 📊 Database access without exposing queries
-- 🛡️ Validate input securely
+-  Keep API keys secret (not in browser)
+-  Run expensive operations server-side
+-  Database access without exposing queries
+-  Validate input securely
 
 ### Styling with Tailwind CSS v4
 
@@ -512,12 +512,12 @@ In components, use Tailwind's `dark:` prefix:
 
 ### Design Principles
 
-- ✅ Academic elegance with modern touches
-- ✅ High contrast for accessibility
-- ✅ Minimalist aesthetic
-- ✅ Smooth, restrained animations
-- ✅ Islamic geometric patterns as decorative elements
-- ✅ Mobile-first responsive design
+- Academic elegance with modern touches
+- High contrast for accessibility
+- Minimalist aesthetic
+- Smooth, restrained animations
+- Islamic geometric patterns as decorative elements
+- Mobile-first responsive design
 
 ---
 
@@ -572,11 +572,11 @@ Floating chatbot widget for answering school-related questions.
 - Suggestion questions for new users
 
 **API Integration** (`src/lib/chatService.ts`):
-- ✅ **Gemini Interactions API v1** (current official API)
-- ✅ **Model**: `gemini-3.6-flash`
-- ✅ **Endpoint**: `https://generativelanguage.googleapis.com/v1/models/...`
-- ✅ **Server-side**: API key kept secure
-- ✅ **Multi-turn**: Full conversation history support
+- **Gemini Interactions API v1** (current official API)
+- **Model**: `gemini-3.6-flash`
+- **Endpoint**: `https://generativelanguage.googleapis.com/v1/models/...`
+- **Server-side**: API key kept secure
+- **Multi-turn**: Full conversation history support
 
 ### Navigation & Layout
 
@@ -953,15 +953,15 @@ This is a **complete, production-ready** web application for Sirat-e-Mustaqeem E
 ---
 
 **Last Updated**: August 16, 2026  
-**Project Status**: ✅ Production Ready
+**Project Status**:  Production Ready
 
 
-# 📱 Responsive Design Audit Report
+# Responsive Design Audit Report
 
 **Project**: Sirat-e-Mustaqeem Educational System  
 **Auditor Role**: Senior Developer  
 **Audit Date**: August 16, 2026  
-**Status**: ✅ **FULLY RESPONSIVE - PRODUCTION READY**
+**Status**: **FULLY RESPONSIVE - PRODUCTION READY**
 
 ---
 
@@ -969,13 +969,12 @@ This is a **complete, production-ready** web application for Sirat-e-Mustaqeem E
 
 After conducting a comprehensive responsive design audit, I can confirm that this website is **fully responsive and production-ready** across all device sizes (mobile, tablet, and desktop). The implementation follows industry best practices using modern CSS techniques and React patterns.
 
-**Overall Score: 9/10** ⭐⭐⭐⭐⭐
 
 ---
 
 ## Audit Checklist
 
-### ✅ Viewport Configuration
+### Viewport Configuration
 
 | Item | Status | Details |
 |------|--------|---------|
@@ -988,7 +987,7 @@ After conducting a comprehensive responsive design audit, I can confirm that thi
 { name: "viewport", content: "width=device-width, initial-scale=1" }
 ```
 
-### ✅ CSS Breakpoints & Grid System
+### CSS Breakpoints & Grid System
 
 **Tailwind CSS Breakpoints Used**:
 
@@ -1007,11 +1006,11 @@ After conducting a comprehensive responsive design audit, I can confirm that thi
 - Spacing: `p-4 sm:p-6 md:p-8 lg:p-10`
 - Typography: `text-sm sm:text-base md:text-lg lg:text-xl`
 
-### ✅ Mobile Detection Hook
+###  Mobile Detection Hook
 
 **File**: `src/hooks/use-mobile.tsx`
 
-✅ **Features**:
+**Features**:
 - Breakpoint constant: `768px` (matches Tailwind md)
 - Uses `window.matchMedia()` for media query detection
 - Event listener for window resize
@@ -1052,285 +1051,30 @@ export function useIsMobile() {
 **File**: `src/components/layout/Navbar.tsx`
 
 **Responsive Features**:
-- ✅ **Mobile** (< 768px):
+-  **Mobile** (< 768px):
   - Menu icon (hamburger) shown
   - Mobile navigation panel with accordion
   - Expandable "Tarbiyah & Academics" dropdown
   - Tagline bar hidden
   - Logo responsive sizing
 
-- ✅ **Tablet** (768px - 1024px):
+-  **Tablet** (768px - 1024px):
   - Desktop tagline bar shown
   - Primary navigation shown
   - Drop-down menus functional
   - Search button visible
 
-- ✅ **Desktop** (≥ 1024px):
+-  **Desktop** (≥ 1024px):
   - Full desktop navigation with hovers
   - Dropdown menus on hover
   - Full "Apply for Admission" button
   - All secondary navigation items visible
 
-**Code Pattern**:
-```tsx
-{/* Desktop Primary Navigation */}
-<nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-  {/* Desktop nav items */}
-</nav>
 
-{/* Mobile Navigation */}
-<div className="flex items-center gap-2 lg:hidden">
-  {/* Mobile menu toggle */}
-</div>
-```
-
-**✅ Score**: 9/10 (Excellent)
-
----
-
-### 2️⃣ Hero Section
-
-**File**: `src/components/hero/HeroSection.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile** (< 640px):
-  - Single column layout
-  - Full-width text
-  - Hero height optimized for mobile
-  - Decorative elements scaled down
-
-- ✅ **Tablet** (640px - 1024px):
-  - Text scaling starts
-  - Geometric decorations increase
-  - Medium padding applied
-
-- ✅ **Desktop** (≥ 1024px):
-  - Two-column grid layout
-  - Large decorative Islamic geometric shapes
-  - Optimized spacing and typography
-
-**Code Pattern**:
-```tsx
-<div className="container-page relative z-10 grid min-h-[92vh] items-center gap-12 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
-  {/* Single column on mobile, 2 columns on lg */}
-</div>
-
-<div className="absolute -left-16 top-24 size-48 text-gold sm:size-64">
-  {/* Resize from 48px on mobile to 64px on sm+ */}
-</div>
-```
-
-**✅ Score**: 9/10
-
----
-
-### 3️⃣ Chatbot Button (Ask Sirat AI)
-
-**File**: `src/components/chat/SiratChatbot.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile** (< 640px):
-  - Compact button (h-12)
-  - Smaller padding (px-4)
-  - Icon only (text hidden with `hidden sm:inline`)
-  - Small icon size (h-4 w-4)
-  - Fixed bottom: `16px`
-
-- ✅ **Desktop** (≥ 640px):
-  - Larger button (h-14)
-  - More padding (sm:px-5)
-  - Shows full text "Ask Sirat AI"
-  - Larger icons (sm:h-5 sm:w-5)
-
-- ✅ **Chatbot Panel** (responsive popup):
-  - Mobile: `w-[calc(100vw-1.5rem)]` (full width with margins)
-  - Mobile: `max-width: 23rem` (respects small screens)
-  - Tablet: `sm:w-[23rem]` (fixed width)
-  - Height: `h-[70vh]` (70% viewport height)
-  - Min/max constraints for usability
-
-**Code Pattern**:
-```tsx
-<button className="h-12 sm:h-14 px-4 sm:px-5 text-sm sm:text-base">
-  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
-  <span className="hidden sm:inline">Ask Sirat AI</span>
-</button>
-
-<motion.div className="w-[calc(100vw-1.5rem)] max-h-[34rem] max-w-[23rem] sm:right-5 sm:w-[23rem]">
-  {/* Chatbot panel with responsive sizing */}
-</motion.div>
-```
-
-**✅ Score**: 10/10 (Perfect)
-
----
-
-### 4️⃣ Scroll Progress Ring (Back to Top)
-
-**File**: `src/components/effects/ScrollProgressRing.tsx`
-
-**Responsive Features**:
-- ✅ Fixed positioning: `bottom: 88px, right: 24px`
-- ✅ Works on all screen sizes
-- ✅ Adjustable size prop (default: 64px)
-- ✅ Touch-friendly (>44px minimum)
-- ✅ Proper z-index (z-50)
-- ✅ Doesn't overlap with chatbot
-
-**Code Pattern**:
-```tsx
-<motion.button
-  className="pointer-events-auto fixed z-50 flex items-center justify-center rounded-full"
-  style={{
-    bottom: `${bottomOffset}px`,    // 88px
-    right: `${rightOffset}px`,      // 24px
-    width: size,                    // 64px
-    height: size,                   // 64px
-  }}
-/>
-```
-
-**✅ Score**: 10/10 (Perfect)
-
----
-
-### 5️⃣ Gallery Component
-
-**File**: `src/routes/gallery.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile** (default):
-  - 1-column masonry layout (`columns-1`)
-  - Full-width images
-  - Touch-friendly spacing (gap-4)
-
-- ✅ **Tablet** (sm: 640px):
-  - 2-column masonry (`sm:columns-2`)
-  - Better image visibility
-
-- ✅ **Large Tablet** (md: 768px):
-  - 3-column masonry (`md:columns-3`)
-
-- ✅ **Desktop** (lg: 1024px):
-  - 4-column masonry (`lg:columns-4`)
-  - Optimized for viewing
-
-**Code Pattern**:
-```tsx
-<div className="columns-1 gap-4 sm:columns-2 md:columns-3 lg:columns-4">
-  {/* Auto-adjusts columns based on screen size */}
-  {images.map(image => (
-    <div key={image.id}>
-      <img src={image.src} loading="lazy" />
-    </div>
-  ))}
-</div>
-```
-
-**✅ Score**: 10/10 (Perfect)
-
----
-
-### 6️⃣ Footer
-
-**File**: `src/components/layout/Footer.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile** (default):
-  - Single-column layout
-  - Stacked footer sections
-  - Full-width contact info
-
-- ✅ **Tablet** (md: 768px):
-  - 2-column grid (`md:grid-cols-2`)
-
-- ✅ **Desktop** (lg: 1024px):
-  - 4-column grid (`lg:grid-cols-4`)
-  - Horizontal contact info (`lg:flex-row`)
-
-**Code Pattern**:
-```tsx
-<div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-  {/* 1 column mobile → 2 tablet → 4 desktop */}
-</div>
-
-<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-  {/* Stacks on mobile, rows on desktop */}
-</div>
-```
-
-**✅ Score**: 10/10
-
----
-
-### 7️⃣ Admission Form
-
-**File**: `src/components/admissions/AdmissionForm.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile**: Single-column form fields
-- ✅ **Tablet**: Two-column grid (`sm:grid-cols-2`)
-- ✅ **Desktop**: Full-width with optimized spacing
-- ✅ Touch-friendly input sizes
-- ✅ Responsive button sizing
-
-**Code Pattern**:
-```tsx
-<div className="grid gap-3 sm:grid-cols-2">
-  {/* Form fields arrange horizontally on sm+ */}
-</div>
-
-<input className="h-11 md:text-sm" />
-{/* Larger text on mobile for better readability */}
-```
-
-**✅ Score**: 9/10
-
----
-
-### 8️⃣ Results Search Component
-
-**File**: `src/routes/results.tsx`
-
-**Responsive Features**:
-- ✅ **Mobile**: Stacked layout (`flex-col`)
-- ✅ **Tablet**: Horizontal layout (`sm:flex-row`)
-- ✅ Responsive padding (`p-6 sm:p-8`)
-- ✅ Touch-friendly buttons
-
-**Code Pattern**:
-```tsx
-<div className="flex flex-col gap-3 sm:flex-row">
-  {/* Stacks vertically on mobile, horizontal on sm+ */}
-</div>
-```
-
-**✅ Score**: 9/10
-
----
-
-## Testing Results
-
-### ✅ Viewport Sizes Tested
-
-| Device Type | Width | Height | Status |
-|------------|-------|--------|--------|
-| iPhone SE | 375px | 667px | ✅ Perfect |
-| iPhone 14 | 390px | 844px | ✅ Perfect |
-| iPhone 15 Pro Max | 430px | 932px | ✅ Perfect |
-| Galaxy S21 | 360px | 800px | ✅ Perfect |
-| iPad Mini | 768px | 1024px | ✅ Perfect |
-| iPad Pro | 1024px | 1366px | ✅ Perfect |
-| Desktop (HD) | 1366px | 768px | ✅ Perfect |
-| Desktop (FHD) | 1920px | 1080px | ✅ Perfect |
-| Desktop (2K) | 2560px | 1440px | ✅ Perfect |
-| Ultra-wide | 3440px | 1440px | ✅ Perfect |
-
----
 
 ## Critical Responsive Features
 
-### ✅ 1. Mobile-First Approach
+### 1. Mobile-First Approach
 
 ```css
 /* Base styles for mobile (smallest screens) */
@@ -1347,7 +1091,7 @@ export function useIsMobile() {
 
 ---
 
-### ✅ 2. Flexible Layouts
+### 2. Flexible Layouts
 
 **Grid System**:
 ```tsx
@@ -1363,7 +1107,7 @@ export function useIsMobile() {
 
 ---
 
-### ✅ 3. Flexible Typography
+### 3. Flexible Typography
 
 ```tsx
 // Text scales based on breakpoint
@@ -1379,7 +1123,7 @@ export function useIsMobile() {
 
 ---
 
-### ✅ 4. Touch-Friendly Interface
+### 4. Touch-Friendly Interface
 
 **Button Sizes**:
 ```tsx
@@ -1396,7 +1140,7 @@ className="p-4 sm:p-2"
 
 ---
 
-### ✅ 5. Conditional Visibility
+###  5. Conditional Visibility
 
 **Hide/Show Elements**:
 ```tsx
@@ -1412,7 +1156,7 @@ className="p-4 sm:p-2"
 
 ---
 
-### ✅ 6. Responsive Images
+### 6. Responsive Images
 
 **Lazy Loading**:
 ```tsx
@@ -1432,7 +1176,7 @@ className="p-4 sm:p-2"
 
 ---
 
-### ✅ 7. Dark Mode Support
+### 7. Dark Mode Support
 
 ```tsx
 // Automatic dark mode with CSS variables
@@ -1443,134 +1187,6 @@ className="p-4 sm:p-2"
 
 ---
 
-## Performance Metrics
-
-### ✅ Mobile Performance
-
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Largest Contentful Paint (LCP) | < 2.5s | ~1.8s | ✅ Excellent |
-| First Input Delay (FID) | < 100ms | ~40ms | ✅ Excellent |
-| Cumulative Layout Shift (CLS) | < 0.1 | ~0.05 | ✅ Excellent |
-| Mobile Rendering | < 3s | ~2.2s | ✅ Excellent |
-
-### ✅ Tablet Performance
-
-| Metric | Status | Details |
-|--------|--------|---------|
-| Layout Stability | ✅ | No unexpected shifts |
-| Touch Responsiveness | ✅ | Immediate feedback |
-| Orientation Changes | ✅ | Smooth transitions |
-
-### ✅ Desktop Performance
-
-| Metric | Status | Details |
-|--------|--------|---------|
-| Viewport Utilization | ✅ | Proper spacing at all widths |
-| Large Screen Layout | ✅ | Content doesn't over-stretch |
-| Multi-column Layouts | ✅ | Properly balanced grids |
-
----
-
-## Accessibility Compliance
-
-### ✅ Responsive Accessibility
-
-| Feature | Status | Details |
-|---------|--------|---------|
-| Viewport Meta Tag | ✅ | Prevents unintended zoom |
-| Touch Targets | ✅ | Minimum 44x44px |
-| Font Sizes | ✅ | Readable at all sizes |
-| Color Contrast | ✅ | WCAG AA compliant |
-| Focus Indicators | ✅ | Visible focus rings |
-| ARIA Labels | ✅ | Properly labeled buttons |
-| Keyboard Navigation | ✅ | Full keyboard support |
-| Screen Readers | ✅ | Semantic HTML |
-
----
-
-## Recommendations & Best Practices
-
-### 1️⃣ Continue Using Mobile-First Approach ✅
-
-The codebase already follows this. Keep it up!
-
-```tsx
-// Good - mobile default, then progressive enhancement
-className="w-full sm:w-1/2 md:w-1/3"
-```
-
-### 2️⃣ Test on Real Devices 📱
-
-- Test on actual phones (not just browser emulation)
-- Test on tablets in portrait and landscape
-- Test touch interactions
-- Test on slow 3G networks
-
-**Tools**:
-- Chrome DevTools Device Mode
-- Firefox Responsive Design Mode
-- Real device testing (iPhone, Android)
-
-### 3️⃣ Use CSS Container Queries (Future Enhancement)
-
-```css
-@container (min-width: 400px) {
-  .card { /* responsive to container size */ }
-}
-```
-
-### 4️⃣ Monitor Core Web Vitals
-
-- Use Google PageSpeed Insights
-- Monitor Lighthouse scores
-- Track actual user metrics
-
-### 5️⃣ Responsive Image Optimization
-
-Current implementation is good. Consider adding:
-```tsx
-<picture>
-  <source media="(max-width: 768px)" srcSet="mobile-image.jpg" />
-  <source media="(min-width: 769px)" srcSet="desktop-image.jpg" />
-  <img src="fallback.jpg" alt="Description" />
-</picture>
-```
-
----
-
-## Browser Compatibility
-
-### ✅ Supported Browsers
-
-| Browser | Version | Status |
-|---------|---------|--------|
-| Chrome | Latest 2 versions | ✅ Full support |
-| Firefox | Latest 2 versions | ✅ Full support |
-| Safari | Latest 2 versions | ✅ Full support |
-| Edge | Latest 2 versions | ✅ Full support |
-| Mobile Safari (iOS) | 13+ | ✅ Full support |
-| Chrome Mobile | Latest | ✅ Full support |
-| Samsung Internet | Latest | ✅ Full support |
-
-**Media Query Support**: ✅ 100% (all modern browsers)
-**Flexbox Support**: ✅ 100%
-**CSS Grid Support**: ✅ 100%
-**CSS Variables Support**: ✅ 100%
-
----
-
-## Responsive Design Issues Found
-
-### ⚠️ Minor (Non-Critical)
-
-**Issue**: Some ultra-wide screens (>3000px) may have excessive whitespace
-
-**Current Solution**: Max-width containers are in place
-
-**Severity**: Low (affects <0.1% of users)
-
----
 
 ## Summary of Strengths
 
@@ -1622,11 +1238,9 @@ As a senior developer reviewing this codebase, I can confidently state that the 
 4. **Accessibility-first mindset** at all breakpoints
 5. **Performance optimization** for all device types
 
-**This project is ready for production deployment with confidence.** ✅
 
 ---
-
-**Reviewed by**: Senior Developer  
+ 
 **Date**: August 16, 2026  
-**Audit Status**: ✅ Complete and Approved  
-**Next Review**: Recommended in 6 months or after major feature additions
+**Audit Status**: Complete and Approved  
+
