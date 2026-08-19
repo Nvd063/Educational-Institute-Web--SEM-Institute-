@@ -1,0 +1,892 @@
+/* ============================================
+   THEME SWITCH SYSTEM
+   Default | Sidr Aurora 🌿 | Ishq-e-Noor Pulse 🌌
+
+   Internal class mapping (kept identical so switching
+   logic in ThemeContext/NoorSwitch stays untouched):
+     .theme-blush  → "Sidr Aurora" 🌿
+                     deep emerald · teal · turquoise · mint · subtle lime
+     .theme-meadow → "Ishq-e-Noor Pulse" 🌌
+                     deep plum · orchid · magenta · soft rose · lavender
+
+   Both themes are DARK canvases with WHITE text. All semantic
+   design tokens (--card, --secondary, --background, --navy,
+   --foreground, etc.) are overridden per theme so every
+   component (cards, forms, dialogs, dropdowns, nav, hero,
+   footer) stays readable with strong contrast.
+   ============================================ */
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* ============================================
+   SOFT LIGHT SHIMMER (Toggle Button)
+   Gentle white/silver flicker — light catching glass
+   ============================================ */
+
+@keyframes soft-shimmer {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 0 0 0 0 rgba(255, 255, 255, 0.5);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  15% {
+    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.9), 0 0 24px 6px rgba(255, 255, 255, 0.4);
+    filter: brightness(1.15);
+    transform: scale(1.03);
+  }
+  30% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 0 0 0 0 rgba(255, 255, 255, 0.5);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7), 0 0 16px 4px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+  70% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 0 0 0 0 rgba(255, 255, 255, 0.5);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 0 0 0 0 rgba(255, 255, 255, 0.5);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+.soft-shimmer {
+  animation: soft-shimmer 0.4s ease-out;
+}
+
+/* ============================================
+   ANIMATED GRADIENT MOVEMENT
+   Gentle living aurora / pulse pans
+   ============================================ */
+
+@keyframes aurora-bg-pan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes pulse-bg-pan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes noor-gradient-pan {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+  100% {
+    background-position: 110% 50%, 105% 50%;
+  }
+}
+
+/* ============================================
+   GLASS SHIMMER SWEEPS
+   ============================================ */
+
+@keyframes aurora-shimmer {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-shimmer {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   MICRO-LIGHTNING / ELECTRIC SPARK FLICKER
+   Elegant, minimal — soft glints around the toggle.
+   Glow colour is injected per-theme via --noor-spark-glow.
+   ============================================ */
+
+@keyframes noor-spark-flicker {
+  0%,
+  100% {
+    opacity: 0;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.35)) drop-shadow(0 0 6px var(--noor-spark-glow, rgba(255, 255, 255, 0.5)));
+  }
+  10% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 10px var(--noor-spark-glow, rgba(255, 255, 255, 0.7)));
+  }
+  16% {
+    opacity: 0.12;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
+  }
+  24% {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 8px var(--noor-spark-glow, rgba(255, 255, 255, 0.6)));
+  }
+  30% {
+    opacity: 0.08;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+  }
+  38% {
+    opacity: 0.42;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 7px var(--noor-spark-glow, rgba(255, 255, 255, 0.5)));
+  }
+  46% {
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   SMOOTH THEME TRANSITIONS
+   ============================================ */
+
+* {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ============================================================
+   THEME 1 — SIDR AURORA 🌿
+   Deep emerald · teal · turquoise · mint · subtle lime
+   Dark glass canvas → white text, strong contrast everywhere.
+   ============================================================ */
+
+/* Override semantic design tokens so every component adapts */
+html.theme-blush {
+  --background: #042F2E;
+  --foreground: #EAFBF4;
+  --surface: #053B38;
+  --card: #053B38;
+  --card-foreground: #EAFBF4;
+  --popover: #053B38;
+  --popover-foreground: #EAFBF4;
+  --navy: #A7F3D0;
+  --navy-foreground: #EAFBF4;
+  --royal: #2DD4BF;
+  --gold: #BEF264;
+  --gold-foreground: #022C22;
+  --primary: #2DD4BF;
+  --primary-foreground: #022C22;
+  --secondary: #0A4A3E;
+  --secondary-foreground: #D1FAE5;
+  --muted: #0A4A3E;
+  --muted-foreground: #A9D8C9;
+  --accent: #6EE7B7;
+  --accent-foreground: #022C22;
+  --destructive: #F87171;
+  --destructive-foreground: #022C22;
+  --border: #14564A;
+  --input: #14564A;
+  --ring: #2DD4BF;
+  --sage: #6EE7B7;
+  --ivory: #053B38;
+  --cream: #0A4A3E;
+  --charcoal: #E7FBF3;
+  color-scheme: dark;
+}
+
+.theme-blush body {
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(45, 212, 191, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 82% 72%, rgba(110, 231, 183, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 55% 8%, rgba(190, 242, 100, 0.1) 0%, transparent 45%),
+    linear-gradient(135deg, #022C22 0%, #043F2E 36%, #053B33 68%, #022C22 100%);
+  background-size: 190% 190%;
+  animation: aurora-bg-pan 20s ease-in-out infinite alternate;
+  color: #FFFFFF;
+}
+
+.theme-blush ::selection {
+  background-color: #6EE7B7;
+  color: #022C22;
+}
+
+.theme-blush,
+.theme-blush * {
+  --text-color: #FFFFFF;
+}
+
+.theme-blush body,
+.theme-blush main,
+.theme-blush section,
+.theme-blush article,
+.theme-blush div,
+.theme-blush p,
+.theme-blush span,
+.theme-blush li,
+.theme-blush td,
+.theme-blush th,
+.theme-blush label,
+.theme-blush figcaption,
+.theme-blush strong,
+.theme-blush em,
+.theme-blush small,
+.theme-blush blockquote,
+.theme-blush pre,
+.theme-blush code,
+.theme-blush q {
+  color: #FFFFFF;
+}
+
+.theme-blush nav,
+.theme-blush header,
+.theme-blush banner,
+.theme-blush nav *,
+.theme-blush header *,
+.theme-blush banner * {
+  color: inherit;
+}
+
+.theme-blush strong,
+.theme-blush b {
+  color: #A7F3D0;
+}
+
+.theme-blush em,
+.theme-blush i {
+  color: #6EE7B7;
+}
+
+.theme-blush h1,
+.theme-blush h2,
+.theme-blush h3,
+.theme-blush h4 {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-shadow: 0 0 22px rgba(45, 212, 191, 0.35), 0 0 44px rgba(110, 231, 183, 0.18);
+}
+
+.theme-blush a {
+  color: #6EE7B7;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.theme-blush a:hover {
+  color: #A7F3D0;
+  text-shadow: 0 0 12px rgba(110, 231, 183, 0.5);
+}
+
+/* Glassy sweep on general buttons (except the NoorSwitch and fixed
+   floating buttons like the scroll-to-top ring, which must keep
+   their fixed positioning) */
+.theme-blush button:not(.noor-btn-aurora):not(.fixed),
+.theme-blush [role="button"]:not(.noor-btn-aurora):not(.fixed) {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-blush button:not(.noor-btn-aurora):not(.fixed)::before,
+.theme-blush [role="button"]:not(.noor-btn-aurora):not(.fixed)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transition: left 0.5s ease;
+}
+
+.theme-blush button:not(.noor-btn-aurora):not(.fixed):hover::before,
+.theme-blush [role="button"]:not(.noor-btn-aurora):not(.fixed):hover::before {
+  left: 100%;
+}
+
+/* Dark navy/primary surfaces with light text (hero, footer, page headers) */
+.theme-blush .bg-navy,
+.theme-blush .bg-primary,
+.theme-blush .btn-primary {
+  background: linear-gradient(135deg, #022C22 0%, #043F2E 40%, #065F46 100%) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 28px rgba(45, 212, 191, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #EAFBF4 !important;
+}
+
+.theme-blush .bg-navy:hover,
+.theme-blush .bg-primary:hover,
+.theme-blush .btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.42), 0 0 38px rgba(45, 212, 191, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Dark glass cards / panels */
+.theme-blush .card,
+.theme-blush [role="card"],
+.theme-blush .glass-panel,
+.theme-blush .glass-badge,
+.theme-blush .glass-strip {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(45, 212, 191, 0.24);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 22px rgba(45, 212, 191, 0.1);
+}
+
+.theme-blush .card:hover,
+.theme-blush [role="card"]:hover {
+  border-color: rgba(45, 212, 191, 0.45);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 34px rgba(110, 231, 183, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Dark glass inputs with light text + readable placeholders */
+.theme-blush input,
+.theme-blush textarea,
+.theme-blush select {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(45, 212, 191, 0.3) !important;
+  color: #FFFFFF !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.theme-blush input::placeholder,
+.theme-blush textarea::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+
+.theme-blush select option {
+  background: #043F2E;
+  color: #FFFFFF;
+}
+
+.theme-blush input:focus,
+.theme-blush textarea:focus,
+.theme-blush select:focus {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: #2DD4BF !important;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25);
+}
+
+.theme-blush .glass-panel::after,
+.theme-blush .glass-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0%, rgba(167, 243, 208, 0.18) 48%, transparent 100%);
+  transform: translateX(-100%);
+  animation: aurora-shimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.theme-blush::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.09) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(110, 231, 183, 0.07) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================================
+   THEME 2 — ISHQ-E-NOOR PULSE 🌌
+   Deep plum · orchid · magenta · soft rose · lavender
+   Dark glass canvas → white text, strong contrast everywhere.
+   ============================================================ */
+
+/* Override semantic design tokens so every component adapts */
+html.theme-meadow {
+  --background: #2E1065;
+  --foreground: #F6F0FF;
+  --surface: #3B0764;
+  --card: #3B0764;
+  --card-foreground: #F6F0FF;
+  --popover: #3B0764;
+  --popover-foreground: #F6F0FF;
+  --navy: #E9D5FF;
+  --navy-foreground: #F6F0FF;
+  --royal: #C084FC;
+  --gold: #F0ABFC;
+  --gold-foreground: #3B0764;
+  --primary: #C084FC;
+  --primary-foreground: #3B0764;
+  --secondary: #581C87;
+  --secondary-foreground: #F3E8FF;
+  --muted: #581C87;
+  --muted-foreground: #D6C4E8;
+  --accent: #D8B4FE;
+  --accent-foreground: #3B0764;
+  --destructive: #F87171;
+  --destructive-foreground: #3B0764;
+  --border: #6D28D9;
+  --input: #6D28D9;
+  --ring: #C084FC;
+  --sage: #C4B5FD;
+  --ivory: #3B0764;
+  --cream: #581C87;
+  --charcoal: #F3E8FF;
+  color-scheme: dark;
+}
+
+.theme-meadow body {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(196, 181, 253, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(236, 72, 153, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 58% 10%, rgba(217, 70, 239, 0.1) 0%, transparent 45%),
+    linear-gradient(135deg, #2E1065 0%, #3B0764 36%, #4C0D5C 68%, #2E1065 100%);
+  background-size: 190% 190%;
+  animation: pulse-bg-pan 20s ease-in-out infinite alternate;
+  color: #FFFFFF;
+}
+
+.theme-meadow ::selection {
+  background-color: #E9D5FF;
+  color: #3B0764;
+}
+
+.theme-meadow,
+.theme-meadow * {
+  --text-color: #FFFFFF;
+}
+
+.theme-meadow body,
+.theme-meadow main,
+.theme-meadow section,
+.theme-meadow article,
+.theme-meadow div,
+.theme-meadow p,
+.theme-meadow span,
+.theme-meadow li,
+.theme-meadow td,
+.theme-meadow th,
+.theme-meadow label,
+.theme-meadow figcaption,
+.theme-meadow strong,
+.theme-meadow em,
+.theme-meadow small,
+.theme-meadow blockquote,
+.theme-meadow pre,
+.theme-meadow code,
+.theme-meadow q {
+  color: #FFFFFF;
+}
+
+.theme-meadow nav,
+.theme-meadow header,
+.theme-meadow banner,
+.theme-meadow nav *,
+.theme-meadow header *,
+.theme-meadow banner * {
+  color: inherit;
+}
+
+.theme-meadow strong,
+.theme-meadow b {
+  color: #E9D5FF;
+}
+
+.theme-meadow em,
+.theme-meadow i {
+  color: #C4B5FD;
+}
+
+.theme-meadow h1,
+.theme-meadow h2,
+.theme-meadow h3,
+.theme-meadow h4 {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-shadow: 0 0 22px rgba(196, 181, 253, 0.38), 0 0 44px rgba(236, 72, 153, 0.2);
+}
+
+.theme-meadow a {
+  color: #C4B5FD;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.theme-meadow a:hover {
+  color: #E9D5FF;
+  text-shadow: 0 0 12px rgba(233, 213, 255, 0.5);
+}
+
+/* Glassy sweep on general buttons (except the NoorSwitch and fixed
+   floating buttons like the scroll-to-top ring, which must keep
+   their fixed positioning) */
+.theme-meadow button:not(.noor-btn-pulse):not(.fixed),
+.theme-meadow [role="button"]:not(.noor-btn-pulse):not(.fixed) {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-meadow button:not(.noor-btn-pulse):not(.fixed)::before,
+.theme-meadow [role="button"]:not(.noor-btn-pulse):not(.fixed)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transition: left 0.5s ease;
+}
+
+.theme-meadow button:not(.noor-btn-pulse):not(.fixed):hover::before,
+.theme-meadow [role="button"]:not(.noor-btn-pulse):not(.fixed):hover::before {
+  left: 100%;
+}
+
+/* Dark navy/primary surfaces with light text (hero, footer, page headers) */
+.theme-meadow .bg-navy,
+.theme-meadow .bg-primary,
+.theme-meadow .btn-primary {
+  background: linear-gradient(135deg, #2E1065 0%, #3B0764 40%, #581C87 100%) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 28px rgba(217, 70, 239, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #F6F0FF !important;
+}
+
+.theme-meadow .bg-navy:hover,
+.theme-meadow .bg-primary:hover,
+.theme-meadow .btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.42), 0 0 38px rgba(217, 70, 239, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Dark glass cards / panels */
+.theme-meadow .card,
+.theme-meadow [role="card"],
+.theme-meadow .glass-panel,
+.theme-meadow .glass-badge,
+.theme-meadow .glass-strip {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(233, 213, 255, 0.24);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 22px rgba(217, 70, 239, 0.1);
+}
+
+.theme-meadow .card:hover,
+.theme-meadow [role="card"]:hover {
+  border-color: rgba(217, 70, 239, 0.45);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 34px rgba(233, 213, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Dark glass inputs with light text + readable placeholders */
+.theme-meadow input,
+.theme-meadow textarea,
+.theme-meadow select {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(233, 213, 255, 0.3) !important;
+  color: #FFFFFF !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.theme-meadow input::placeholder,
+.theme-meadow textarea::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+
+.theme-meadow select option {
+  background: #3B0764;
+  color: #FFFFFF;
+}
+
+.theme-meadow input:focus,
+.theme-meadow textarea:focus,
+.theme-meadow select:focus {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: #C026D3 !important;
+  box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.25);
+}
+
+.theme-meadow .glass-panel::after,
+.theme-meadow .glass-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0%, rgba(233, 213, 255, 0.18) 48%, transparent 100%);
+  transform: translateX(-100%);
+  animation: pulse-shimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.theme-meadow::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(196, 181, 253, 0.09) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.07) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================================
+   NOOR SWITCH — THEMED BUTTON SURFACES
+   Glassmorphic + glimmery multi-color gradients with soft
+   glow and animated gradient movement. Fully isolated per
+   theme (scoped under the active theme class only).
+   ============================================================ */
+
+/* Shared spark container (decorative, never intercepts clicks) */
+.noor-sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---- SIDR AURORA toggle ---- */
+
+.theme-blush .noor-btn-aurora {
+  overflow: visible !important;
+  /* translucent multi-tone sheen (turquoise · mint · lime) over deep glass base (emerald · teal) */
+  background:
+    linear-gradient(60deg, rgba(45, 212, 191, 0.16) 0%, rgba(110, 231, 183, 0.12) 28%, rgba(190, 242, 100, 0.1) 55%, rgba(45, 212, 191, 0.15) 82%),
+    linear-gradient(135deg, rgba(2, 44, 34, 0.94) 0%, rgba(4, 63, 46, 0.92) 28%, rgba(4, 94, 84, 0.9) 56%, rgba(13, 148, 136, 0.9) 78%, rgba(2, 44, 34, 0.94) 100%);
+  background-size: 240% 240%, 240% 240%;
+  background-position: 0% 50%, 0% 50%;
+  border-color: rgba(167, 243, 208, 0.55) !important;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.36),
+    0 0 24px rgba(45, 212, 191, 0.26),
+    0 0 46px rgba(110, 231, 183, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 20px rgba(167, 243, 208, 0.08);
+  animation: noor-gradient-pan 11s ease-in-out infinite alternate;
+}
+
+.theme-blush .noor-btn-aurora:hover {
+  border-color: rgba(167, 243, 208, 0.9) !important;
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.42),
+    0 0 32px rgba(45, 212, 191, 0.4),
+    0 0 60px rgba(110, 231, 183, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 0 24px rgba(167, 243, 208, 0.12);
+}
+
+.theme-blush .noor-text-aurora {
+  position: relative;
+  z-index: 1;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 16px rgba(110, 231, 183, 0.5);
+}
+
+.theme-blush .noor-dot-aurora {
+  background: #A7F3D0 !important;
+  box-shadow: 0 0 8px rgba(110, 231, 183, 0.95), 0 0 18px rgba(45, 212, 191, 0.6);
+}
+
+.theme-blush .noor-spark {
+  --noor-spark-glow: rgba(167, 243, 208, 0.85);
+  position: absolute;
+  width: 5px;
+  height: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(167, 243, 208, 0.85) 55%, rgba(167, 243, 208, 0) 100%);
+  clip-path: polygon(52% 0%, 70% 22%, 58% 24%, 84% 52%, 60% 50%, 100% 100%, 40% 62%, 56% 58%, 26% 28%, 46% 30%);
+  animation: noor-spark-flicker 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.theme-blush .noor-spark-1 {
+  top: -7px;
+  left: 12px;
+  transform: rotate(-16deg);
+  animation-delay: 0.9s;
+}
+
+.theme-blush .noor-spark-2 {
+  top: -4px;
+  right: 26px;
+  transform: rotate(10deg) scale(0.82);
+  animation-delay: 3.2s;
+}
+
+.theme-blush .noor-spark-3 {
+  bottom: -8px;
+  left: 34px;
+  transform: rotate(24deg) scale(0.7);
+  animation-delay: 5.3s;
+}
+
+/* ---- ISHQ-E-NOOR PULSE toggle ---- */
+
+.theme-meadow .noor-btn-pulse {
+  overflow: visible !important;
+  /* translucent multi-tone sheen (orchid · magenta · rose · lavender) over deep glass base (plum · orchid) */
+  background:
+    linear-gradient(60deg, rgba(217, 70, 239, 0.15) 0%, rgba(236, 72, 153, 0.12) 28%, rgba(196, 181, 253, 0.15) 55%, rgba(217, 70, 239, 0.14) 82%),
+    linear-gradient(135deg, rgba(46, 16, 101, 0.94) 0%, rgba(59, 7, 100, 0.92) 28%, rgba(112, 26, 117, 0.9) 56%, rgba(162, 28, 175, 0.9) 78%, rgba(46, 16, 101, 0.94) 100%);
+  background-size: 240% 240%, 240% 240%;
+  background-position: 0% 50%, 0% 50%;
+  border-color: rgba(233, 213, 255, 0.55) !important;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.38),
+    0 0 24px rgba(217, 70, 239, 0.26),
+    0 0 46px rgba(236, 72, 153, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 20px rgba(233, 213, 255, 0.08);
+  animation: noor-gradient-pan 11s ease-in-out infinite alternate;
+}
+
+.theme-meadow .noor-btn-pulse:hover {
+  border-color: rgba(233, 213, 255, 0.9) !important;
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.44),
+    0 0 32px rgba(217, 70, 239, 0.4),
+    0 0 60px rgba(236, 72, 153, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 0 24px rgba(233, 213, 255, 0.12);
+}
+
+.theme-meadow .noor-text-pulse {
+  position: relative;
+  z-index: 1;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.42), 0 0 16px rgba(233, 213, 255, 0.5);
+}
+
+.theme-meadow .noor-dot-pulse {
+  background: #E9D5FF !important;
+  box-shadow: 0 0 8px rgba(233, 213, 255, 0.95), 0 0 18px rgba(217, 70, 239, 0.6);
+}
+
+.theme-meadow .noor-spark {
+  --noor-spark-glow: rgba(233, 213, 255, 0.85);
+  position: absolute;
+  width: 5px;
+  height: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(233, 213, 255, 0.85) 55%, rgba(233, 213, 255, 0) 100%);
+  clip-path: polygon(52% 0%, 70% 22%, 58% 24%, 84% 52%, 60% 50%, 100% 100%, 40% 62%, 56% 58%, 26% 28%, 46% 30%);
+  animation: noor-spark-flicker 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.theme-meadow .noor-spark-1 {
+  top: -7px;
+  left: 12px;
+  transform: rotate(-16deg);
+  animation-delay: 1.4s;
+}
+
+.theme-meadow .noor-spark-2 {
+  top: -4px;
+  right: 26px;
+  transform: rotate(10deg) scale(0.82);
+  animation-delay: 3.6s;
+}
+
+.theme-meadow .noor-spark-3 {
+  bottom: -8px;
+  left: 34px;
+  transform: rotate(24deg) scale(0.7);
+  animation-delay: 5.7s;
+}
+
+/* ============================================
+   ACCESSIBILITY - Respect prefers-reduced-motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .theme-blush::before,
+  .theme-meadow::before {
+    animation: none;
+  }
+
+  .theme-blush .noor-spark,
+  .theme-meadow .noor-spark {
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .theme-blush::before,
+  .theme-meadow::before {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   ENSURE NoorSwitch VISIBILITY
+   ============================================ */
+
+.fixed.z-\[100\] {
+  pointer-events: auto;
+  z-index: 100 !important;
+}
+
+.fixed.z-\[100\] button {
+  pointer-events: auto;
+}
